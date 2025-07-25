@@ -29,6 +29,7 @@ type JobParameters struct {
 	SkipCleanup     bool
 	Username        string
 	GoPath          string
+	GoExperiment    string
 	CleanupCmd      string
 }
 
@@ -47,8 +48,9 @@ type JobRecord struct {
 	Started   time.Time
 	Completed time.Time
 
-	SHA       string
-	GoVersion string
+	SHA          string
+	GoVersion    string
+	GoExperiment string
 
 	// Artifacts from job execution
 	Log     string

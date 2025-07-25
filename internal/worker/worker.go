@@ -182,6 +182,7 @@ func (w *workerImpl) runJob(job *core.JobRecord) (string, error) {
 		MinRuntime      string
 		Timeout         string
 		GoPath          string
+		GoExperiment    string
 		CleanupCommand  string
 	}{
 		JobDirPath:      jobTempDir,
@@ -196,6 +197,7 @@ func (w *workerImpl) runJob(job *core.JobRecord) (string, error) {
 		MinRuntime:      fmt.Sprintf("%v", job.Parameters.TestMinRuntime),
 		Timeout:         fmt.Sprintf("%v", job.Parameters.Timeout),
 		GoPath:          job.Parameters.GoPath,
+		GoExperiment:    job.Parameters.GoExperiment,
 		CleanupCommand:  job.Parameters.CleanupCmd,
 	}
 
@@ -247,6 +249,7 @@ func (w *workerImpl) runJob(job *core.JobRecord) (string, error) {
 	} else {
 		job.GoVersion = "?"
 	}
+	job.GoExperiment = job.Parameters.GoExperiment
 
 	if procState.ExitCode() != 0 {
 		return jobTempDir, fmt.Errorf("Non-zero exit code")

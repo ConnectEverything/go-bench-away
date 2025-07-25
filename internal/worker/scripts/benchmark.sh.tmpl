@@ -41,6 +41,8 @@ BENCHMARK_MIN_RUN_TIME="{{.MinRuntime}}"
 MAX_RUN_TIME="{{.Timeout}}"
 # Go executable path (optional)
 GO="{{.GoPath}}"
+# Go experiment (optional)
+export GOEXPERIMENT="{{.GoExperiment}}"
 # Command to execute on exit (useful to delete any files that tests may leave behind)
 CLEANUP="{{.CleanupCommand}}"
 
@@ -152,6 +154,7 @@ test -s "${SHA_FILE}" || fail "Failed to identify commit SHA"
 # Record the go version
 echo "Go runtime:"
 ${GO} version | tee "${GO_VERSION_FILE}"
+${GO} env
 
 test -s "${GO_VERSION_FILE}" || fail "Failed to identify commit SHA"
 
